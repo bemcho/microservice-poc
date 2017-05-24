@@ -6,7 +6,12 @@ eureka:
        
 zuul:
  routes:
-   users:
+   products:
      path: /api/products/**
      serviceId: PRODUCT-SERVICE
+     stripPrefix: false
+   oauth:
+     path: /oauth/**
+     serviceId: UAA-SERVICE
+     sensitiveHeaders: Cookie,Set-Cookie
      stripPrefix: false
