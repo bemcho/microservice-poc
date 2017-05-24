@@ -1,0 +1,12 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:5051/eureka/"
+
+       
+zuul:
+ routes:
+   users:
+     path: /api/products/**
+     serviceId: PRODUCT-SERVICE
+     stripPrefix: false
