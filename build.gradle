@@ -6,5 +6,6 @@ subprojects  {
 	repositories {
 		jcenter()
 		maven { url "http://repo.spring.io/milestone" }
+		mavenCentral()
 	}
 }

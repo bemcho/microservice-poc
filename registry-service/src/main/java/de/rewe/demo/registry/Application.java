@@ -1,16 +1,14 @@
-package de.rewe.demo.product;
+package de.rewe.demo.registry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * The main application class for the demo project.
+ * The main application class for the registration service.
  */
-@ComponentScan
+@EnableEurekaServer
 @SpringBootApplication
-@EnableEurekaClient
 public class Application {
 
 	public static void main(String[] args) throws Exception {

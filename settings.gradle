@@ -1,3 +1,3 @@
-rootProject.name = 'misc'
+rootProject.name = 'customer-card-demo'
 
-include 'product-service'
+include 'product-service', 'registry-service'
