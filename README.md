@@ -72,7 +72,7 @@ Expected response is:
 
 The product service is now also registered at Eureka and should be available there.
 
-## Gateway API service (zuul)
+## API Gateway service (zuul)
 
 The Zuul proxy should be able to contact Eureka and route incomming calls accordingly. Start the proxy.
 
