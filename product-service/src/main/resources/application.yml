@@ -1,0 +1,20 @@
+spring:
+    application:
+        name: product-service
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: "http://localhost:5051/eureka/"
+
+server:
+    port: 5000
+
+#TODO: The token service should be eureka aware! 
+tokenservice:
+    checkTokenEndpointUrl: http://localhost:5060/oauth/check_token
+    clientId: foo
+    clientSecret: "" 
