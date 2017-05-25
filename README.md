@@ -4,9 +4,11 @@ This is a very early PoC implementation of a microservice architecture. Currentl
 
 In *this moment* it consist of:
 
-* registry service - uses Spring Cloud Netflix - Eureka. Runs at [http://localhost:5051/](http://localhost:5051).
-* product service - a spring boot app exposing REST API and registered at Eureka. Runs at [http://localhost:5000/](http://localhost:5000).
-* API Gateway Service - uses Spring Cloud Netflix - Zuul Proxy. Routes API calls and avoids CORS issues. Later will be enhanced. [http://localhost:8080/](http://localhost:8080)
+* API Gateway Service - uses Spring Cloud Netflix - Zuul Proxy. Routes API calls, load balancer, circuit breaker, avoids CORS issues. Later will be enhanced. [http://localhost:8080/](http://localhost:8080)
+* registry service - uses Spring Cloud Netflix - Eureka. Runs at [http://localhost:5051/](http://localhost:5051). Visible only internally.
+* product service - a spring boot app exposing REST API. Runs at [http://localhost:5000/](http://localhost:5000).
+* uaa service - authentication server and user management. Runs at [http://localhost:5060/](http://localhost:5060).
+
 
 The project is organized in a gradle multi module project.
 
