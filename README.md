@@ -1,14 +1,12 @@
 # Intoduction
 
-This is a very early PoC implementation of a microservice architecture. Currently under construction.
+This is a very early PoC implementation of a microservice architecture. 
+In *this moment* it is an active project and consist of:
 
-In *this moment* it consist of:
-
-* API Gateway Service - uses Spring Cloud Netflix - Zuul Proxy. Routes API calls, load balancer, circuit breaker, avoids CORS issues. Later will be enhanced. [http://localhost:8080/](http://localhost:8080)
-* registry service - uses Spring Cloud Netflix - Eureka. Runs at [http://localhost:5051/](http://localhost:5051). Visible only internally.
-* product service - a spring boot app exposing REST API. Runs at [http://localhost:5000/](http://localhost:5000).
-* uaa service - authentication server and user management. Runs at [http://localhost:5060/](http://localhost:5060).
-
+* API Gateway Service - uses Spring Cloud Netflix - Zuul Proxy. Routes API calls, load balancer, circuit breaker, avoids CORS issues.
+* registry service - uses Spring Cloud Netflix - Eureka. Visible only internally and not via the gateway.
+* product service - a spring boot app exposing REST API. Operates as a resource server communicating with the `uaa-service`.
+* uaa service - authentication server and user management.
 
 The project is organized in a gradle multi module project.
 
@@ -30,7 +28,7 @@ This will prepare the eclipse files for all subprojects. These can be now import
 
 # Run
 
-Start the services in the following order.
+Though this is not a must start the services in the following order:
 
 * registry service
 * uaa serive
@@ -39,7 +37,7 @@ Start the services in the following order.
 
 # More information
 
-Under constuction. Check our [wiki](https://github.com/REWE-Digital-Bulgaria/microservice-poc/wiki).
+Check our [wiki](https://github.com/REWE-Digital-Bulgaria/microservice-poc/wiki) for details.
 
 # TODO
 
@@ -49,5 +47,7 @@ Countless features:
 * Hystrix integration
 * Client apps 
 * Price and promotion service
-* Lots of documentation
+* Lots and lots easy to follow documentation
+* CI
+* Dockerizing
 * etc etc etc
