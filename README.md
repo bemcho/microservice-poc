@@ -40,7 +40,13 @@ Then in any order:
 * the product service
 * the api gateway
 
-There is a convenient script for Windows users located in `util-scripts/windows`. Just execute `start-microservices.bat` and this will enable you to start the services interactively.
+There is a convenient script for Windows users located in `util-scripts/windows`. Just execute `start-microservices.bat` and this will enable you to start the services interactively. If this is not possible each service can be started from the project root by executing:
+
+```
+gradlew :<service-name>:bootRun
+```
+
+Here `service-name` is the name of the service, e.g. `uaa-service`.
 
 # More information
 
