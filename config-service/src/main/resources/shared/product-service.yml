@@ -1,0 +1,12 @@
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+
+server:
+    port: 5000
+
+tokenservice:
+    checkTokenEndpointUrl: http://uaa-service/oauth/check_token
+    clientId: foo
+    clientSecret: "" 
