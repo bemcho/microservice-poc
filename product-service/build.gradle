@@ -11,7 +11,7 @@ buildscript {
 }
 
 jar {
-    baseName = 'product'
+    baseName = 'product-service'
     version =  '1.0.0-SNAPSHOT'
 }
 
