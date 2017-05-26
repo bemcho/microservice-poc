@@ -4,9 +4,10 @@ This is a very early PoC implementation of a microservice architecture.
 In *this moment* it is an active project and consist of:
 
 * API Gateway Service - uses Spring Cloud Netflix - Zuul Proxy. Routes API calls, load balancer, circuit breaker, avoids CORS issues.
-* registry service - uses Spring Cloud Netflix - Eureka. Visible only internally and not via the gateway.
-* product service - a spring boot app exposing REST API. Operates as a resource server communicating with the `uaa-service`.
-* uaa service - authentication server and user management.
+* Registry service - uses Spring Cloud Netflix - Eureka. Visible only internally and not via the gateway.
+* Product service - a spring boot app exposing REST API. Operates as a resource server communicating with the `uaa-service`.
+* UAA service - authentication server and user management.
+* Configuration service - able to configure the remaining services.
 
 The project is organized in a gradle multi module project.
 
@@ -28,12 +29,18 @@ This will prepare the eclipse files for all subprojects. These can be now import
 
 # Run
 
-Though this is not a must start the services in the following order:
+To start everything first start:
 
-* registry service
-* uaa serive
-* product service
-* api gateway
+* the registry service
+* the config service
+
+Then in any order:
+
+* the uaa serive
+* the product service
+* the api gateway
+
+There is a convenient script for Windows users located in `util-scripts/windows`. Just execute `start-microservices.bat` and this will enable you to start the services interactively.
 
 # More information
 
