@@ -58,7 +58,6 @@ public class ProductController {
 	 * 
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ADMIN')")
 	@ApiOperation("Creates a new product.")
 	@RequestMapping(method = RequestMethod.POST, value = "/api/products", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Product> createProduct(
