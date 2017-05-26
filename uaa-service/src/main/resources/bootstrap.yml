@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: uaa-service
+    cloud:
+        config:
+            discovery:
+                serviceId: config-service
+                enabled: true
+            fail-fast: true
+            retry:
+                initial-interval: 2000
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: "http://localhost:5051/eureka/"
