@@ -9,7 +9,8 @@ echo [2] Configuration Service
 echo [3] UAA Service
 echo [4] Product Service
 echo [5] Zuul Gateway
-echo [6] Quit
+echo [6] Monitoring service
+echo [7] Quit
 echo.
 REM EO MENU
 
@@ -28,6 +29,8 @@ IF %service_no%==1 (
 ) ELSE IF %service_no%==5 (
 	set service_id=api-gateway-service
 ) ELSE IF %service_no%==6 (
+	set service_id=monitoring-service
+) ELSE IF %service_no%==7 (
 	GOTO EXIT
 ) ELSE (
 	GOTO BAD_INPUT
