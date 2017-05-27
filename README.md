@@ -8,7 +8,7 @@ In *this moment* it is an active project and consist of:
 * Product service - a spring boot app exposing REST API. Operates as a resource server communicating with the `uaa-service`.
 * UAA service - authentication server and user management.
 * Configuration service - a service that holds the configurations for the remaining services.
-* Monitoring service - a monitoring service.
+* Monitoring service - a monitoring service which gives an overview of potential failures.
 
 The project is organized in a gradle multi module project.
 
