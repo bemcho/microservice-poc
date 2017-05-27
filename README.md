@@ -7,7 +7,8 @@ In *this moment* it is an active project and consist of:
 * Registry service - uses Spring Cloud Netflix - Eureka. Visible only internally and not via the gateway.
 * Product service - a spring boot app exposing REST API. Operates as a resource server communicating with the `uaa-service`.
 * UAA service - authentication server and user management.
-* Configuration service - able to configure the remaining services.
+* Configuration service - a service that holds the configurations for the remaining services.
+* Monitoring service - a monitoring service which gives an overview of potential failures.
 
 The project is organized in a gradle multi module project.
 
@@ -39,6 +40,7 @@ Then in any order:
 * the uaa serive
 * the product service
 * the api gateway
+* the monitoring service
 
 There is a convenient script for Windows users located in `util-scripts/windows`. Just execute `start-microservices.bat` and this will enable you to start the services interactively. If this is not possible each service can be started from the project root by executing:
 
