@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import de.rewe.demo.product.domain.Product;
 import de.rewe.demo.product.exceptions.NotFoundException;
 import de.rewe.demo.product.repository.ProductRepository;
@@ -43,6 +45,7 @@ public class ProductController {
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Product not found."),
 			@ApiResponse(code = 200, message = "OK") })
 	@RequestMapping(method = RequestMethod.GET, value = "/api/products/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@HystrixCommand
 	public Product getProductById(
 			@ApiParam(name = "product", value = "The ID of the product.", required = true) @PathVariable Integer productId) {
 		return requireNotNull(productRepository.findOne(productId), productId);
