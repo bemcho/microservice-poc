@@ -1,0 +1,7 @@
+server:
+    port: 5088
+    
+turbine:
+    aggregator:
+        clusterConfig: default
+    appConfig: product-service
