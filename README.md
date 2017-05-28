@@ -1,3 +1,7 @@
+[![Build Status](https://api.travis-ci.org/REWE-Digital-Bulgaria/microservice-poc.svg?branch=master)](https://travis-ci.org/REWE-Digital-Bulgaria/microservice-poc)
+[![Language](http://img.shields.io/badge/language-java-brightgreen.svg)](https://www.java.com/)
+
+
 # Intoduction
 
 This is a very early PoC implementation of a microservice architecture. 
