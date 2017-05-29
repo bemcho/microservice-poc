@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/REWE-Digital-Bulgaria/microservice-poc.svg?branch=master)](https://travis-ci.org/REWE-Digital-Bulgaria/microservice-poc)
+[![Build Status](https://api.travis-ci.org/Digital-Bulgaria/microservice-poc.svg?branch=master)](https://travis-ci.org/Digital-Bulgaria/microservice-poc)
 [![Language](http://img.shields.io/badge/language-java-brightgreen.svg)](https://www.java.com/)
 
 
