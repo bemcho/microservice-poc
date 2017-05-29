@@ -13,8 +13,7 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'registry-service'
-	version = '1.0.0-SNAPSHOT'
+	baseName = 'config-service'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

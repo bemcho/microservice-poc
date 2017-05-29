@@ -12,7 +12,6 @@ buildscript {
 
 jar {
     baseName = 'uaa-service'
-    version =  '1.0.0-SNAPSHOT'
 }
 
 dependencyManagement {
