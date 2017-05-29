@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa.domain;
+package com.example.demo.uaa.domain;
 
 import java.util.LinkedList;
 import java.util.List;

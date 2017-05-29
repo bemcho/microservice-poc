@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa.config;
+package com.example.demo.uaa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

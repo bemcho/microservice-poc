@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa;
+package com.example.demo.uaa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

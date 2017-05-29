@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa;
+package com.example.demo.uaa;
 
 import java.util.Arrays;
 
@@ -8,8 +8,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import de.rewe.demo.uaa.domain.User;
-import de.rewe.demo.uaa.repository.UserRepository;
+import com.example.demo.uaa.domain.User;
+import com.example.demo.uaa.repository.UserRepository;
 
 /**
  * Loads some test data in the user repository.

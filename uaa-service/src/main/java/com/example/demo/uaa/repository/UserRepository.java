@@ -1,10 +1,10 @@
-package de.rewe.demo.uaa.repository;
+package com.example.demo.uaa.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.rewe.demo.uaa.domain.User;
+import com.example.demo.uaa.domain.User;
 
 /**
  * A CRUD repository for user storage and manipulation.

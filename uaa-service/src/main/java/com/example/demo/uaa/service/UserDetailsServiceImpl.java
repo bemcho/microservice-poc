@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa.service;
+package com.example.demo.uaa.service;
 
 import static java.util.stream.Collectors.toList;
 
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import de.rewe.demo.uaa.repository.UserRepository;
+import com.example.demo.uaa.repository.UserRepository;
 
 /**
  * A user service backed up by a CRUD user repository.
@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 
 		LOGGER.debug("Looking for user by name [{}]... {} ", username);
 		
-		de.rewe.demo.uaa.domain.User user = 
+		com.example.demo.uaa.domain.User user = 
 				userRepo.
 				findOneByName(username).
 				orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found!"));

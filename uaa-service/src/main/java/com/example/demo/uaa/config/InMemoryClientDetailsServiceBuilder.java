@@ -1,4 +1,4 @@
-package de.rewe.demo.uaa.config;
+package com.example.demo.uaa.config;
 
 import java.util.HashMap;
 import java.util.Map;
