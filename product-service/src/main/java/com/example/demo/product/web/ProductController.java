@@ -1,4 +1,4 @@
-package de.rewe.demo.product.web;
+package com.example.demo.product.web;
 
 import java.net.URI;
 import java.util.Optional;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.product.domain.Product;
+import com.example.demo.product.exceptions.NotFoundException;
+import com.example.demo.product.repository.ProductRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import de.rewe.demo.product.domain.Product;
-import de.rewe.demo.product.exceptions.NotFoundException;
-import de.rewe.demo.product.repository.ProductRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

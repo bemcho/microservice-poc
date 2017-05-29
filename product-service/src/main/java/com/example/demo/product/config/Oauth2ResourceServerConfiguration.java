@@ -1,4 +1,4 @@
-package de.rewe.demo.product.config;
+package com.example.demo.product.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

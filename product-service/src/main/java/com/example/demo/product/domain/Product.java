@@ -1,4 +1,4 @@
-package de.rewe.demo.product.domain;
+package com.example.demo.product.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

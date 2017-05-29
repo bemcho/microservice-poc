@@ -1,4 +1,4 @@
-package de.rewe.demo.product.service;
+package com.example.demo.product.service;
 
 import java.io.IOException;
 

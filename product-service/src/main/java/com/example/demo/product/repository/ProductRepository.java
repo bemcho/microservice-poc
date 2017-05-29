@@ -1,8 +1,8 @@
-package de.rewe.demo.product.repository;
+package com.example.demo.product.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.rewe.demo.product.domain.Product;
+import com.example.demo.product.domain.Product;
 
 /**
  * A repository enabling CRUD operations on products.
