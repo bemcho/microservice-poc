@@ -1,4 +1,4 @@
-package de.rewe.demo.registry;
+package com.example.demo.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
