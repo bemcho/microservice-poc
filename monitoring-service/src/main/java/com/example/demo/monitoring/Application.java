@@ -1,4 +1,4 @@
-package de.rewe.demo.monitoring;
+package com.example.demo.monitoring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
