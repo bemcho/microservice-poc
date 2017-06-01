@@ -10,6 +10,7 @@ env:
     - secure: "mvE45/jE0U3zpEyBakRE9x9Qa1BrjT5kl1ELmBJuy1+uH4e2plZVO10K0wzDy5MwAkQxFP6jDyAkRnwHs2RslnmksbClaAbcns+JLbPQWcyvTu9MEER8T0CqnC4NxsXgfJrqti2+/UpBH8s0Q/iJ6cIQgLDD238WA3JS4xV810ggPRsWI+F0dAyrhkI2eLy5OdiY0HwQdbO5fvz2UkxsL0e1F/8aoVKPv9wWQ6ZkXuGJ0arR6nKCyZuxhZMSFfwV21iDOr5Z/BHy8TFjY0LoRtWX0Bw4jG3Yc+lmvjKp0/aptmT36wMPn98ZCy+Cz0K2OvVCic18COUvlZFory0nSa0Xyk8t+OOo0vLiTn/kAxCfpgkzJUUN1mo6CrR9PkRgTX/E7hwnpmt5A/XNZYKjTmTX/TdNcWG6LGHT8Q/hhyX8Zvn8wsNu6mTAdAheQBVtRh55w7ibuvyoxcnXI0XrV/sUgwa0b6iWPknbd7F3QQd2Xzc3oCFDFmMZQQr4ZnMaG8PIvNI6BvHe5MMZH6ksBFycCEbvcDltlWV6tuXsz5lWqRe0OWb65dBevOADizj7ziO4JRtU71hu/i6678GkEQ9AeebDoOXlTqv3LvXf2XijvaY3YoBriZuUKO/6rcScxqVOcWJmV9W8aPoPPApFxL8vy5fFdaNZFynSguYCN6k=" # DOCKER_USER
     - secure: "v+2oZ0Y8yiDjimT3sKVop0/EijIAc7vsPsE0urSrPXVrNsApw9HP9JuJ2ZprAvVEuwQ5Voy2ihkRXPi7xn5GD0EhSg1E7ANwIQeRVxtmn27PfRWLEdtmULiZQYOAkZ3sopDlFepJbuEHBKv3pN1sKrw3DBsKwmrkCLqwBO5iBd2FnBJBta4j3vyFb0ZxIXYnJk5S6d3vTpbNySZqg29k/diF7Xp800akSv26ZQX0xC9NKuI2LbSINro5TiL87bxcrOQH/miPGpuc9NihrzYMRdBP+/nib+LLP07ky+bSudogU78/+1AG+muO/q/+mTWTrWLOySDFbMyen0eHeC/FdIZEQ+kAxc6iwQYLLdT6ianabjLPlA3Xvt0TvjFjlY6hWvyG4m9O3jzeM/mGLLyFhZWh2fa4fmVgTa5WS9z2PXUb0pswPGjA2I1Wn9NcXNFw+IoJv2OneXMcj5p3RHC/rCKEHHh7SlvbjLQ3EjcIpWJvX1a6iQ3wxlNSAfX3NNN9KqsZdrcJE7keTxG08s081Zqh0bp7Vrfw9V+Saa6XateLqJcnqSV+4mJ1qbMw02+CR8alF2KL+6gyltvI1lkh15BN74BZ8iSLE3Wdge4my3BcywhquJjvnXFuFUmWDk//QscepP2vqxvnNIdDPddzm00fKtU5s5XLbl4t4NRMHmY=" # DOCKER_PASS
     - COMMIT=${TRAVIS_COMMIT::8}
+    - DOCKER_ACCOUNT=luchob
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -24,8 +25,9 @@ after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   # TAG the repo
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  
   # REGISTRY
-  - export REGISTRY=luchob/mp-registry-service
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-registry-service
   - docker build -t $REGISTRY:$COMMIT ./registry-service
   - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
