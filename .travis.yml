@@ -25,9 +25,39 @@ after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   # TAG the repo
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  
-  # REGISTRY
+
+  # API-GATEWAY-SERVICE
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-api-gateway-service
+  - docker build -t $REGISTRY:$COMMIT ./api-gateway-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # CONFIG-SERVICE
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-config-service
+  - docker build -t $REGISTRY:$COMMIT ./config-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # MONITORING-SERVICE
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-monitoring-service
+  - docker build -t $REGISTRY:$COMMIT ./monitoring-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # PRODUCT-SERVICE
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-product-service
+  - docker build -t $REGISTRY:$COMMIT ./product-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # REGISTRY-SERVICE
   - export REGISTRY=$DOCKER_ACCOUNT/mp-registry-service
   - docker build -t $REGISTRY:$COMMIT ./registry-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  # UAA-SERVICE
+  - export REGISTRY=$DOCKER_ACCOUNT/mp-uaa-service
+  - docker build -t $REGISTRY:$COMMIT ./uaa-service
   - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
