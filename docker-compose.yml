@@ -1,0 +1,38 @@
+version: '1.0'
+services:
+
+  registry-service:
+    image: luchob/mp-registry-service`
+    restart: always
+    ports:
+      - 5051:5051
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  config-service:
+    image: luchob/mp-config-service
+    restart: always
+    depends_on:
+      registry-service:
+        condition: service_healthy
+    ports:
+      - 5070:5070
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+   product-service:
+    image: luchob/mp-product-service
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 5000:5000
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
