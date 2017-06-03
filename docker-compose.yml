@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   registry-service:
-    image: luchob/mp-registry-service
+    image: luchob/registry-service
     restart: always
     ports:
       - 5051:5051
@@ -11,7 +11,7 @@ services:
         max-file: "3"
 
   config-service:
-    image: luchob/mp-config-service
+    image: luchob/config-service
     restart: always
     depends_on:
       registry-service:
@@ -24,7 +24,7 @@ services:
         max-file: "3"
 
   product-service:
-    image: luchob/mp-product-service
+    image: luchob/product-service
     restart: always
     depends_on:
       config-service:

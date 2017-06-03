@@ -27,31 +27,31 @@ after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 
   # API-GATEWAY-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-api-gateway-service
+  - export REGISTRY=$DOCKER_ACCOUNT/api-gateway-service
   - docker build -t $REGISTRY:$TAG ./api-gateway-service
   - docker push $REGISTRY
 
   # CONFIG-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-config-service
+  - export REGISTRY=$DOCKER_ACCOUNT/config-service
   - docker build -t $REGISTRY:$TAG ./config-service
   - docker push $REGISTRY
 
   # MONITORING-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-monitoring-service
+  - export REGISTRY=$DOCKER_ACCOUNT/monitoring-service
   - docker build -t $REGISTRY:$TAG ./monitoring-service
   - docker push $REGISTRY
 
   # PRODUCT-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-product-service
+  - export REGISTRY=$DOCKER_ACCOUNT/product-service
   - docker build -t $REGISTRY:$TAG ./product-service
   - docker push $REGISTRY
 
   # REGISTRY-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-registry-service
+  - export REGISTRY=$DOCKER_ACCOUNT/registry-service
   - docker build -t $REGISTRY:$TAG ./registry-service
   - docker push $REGISTRY
 
   # UAA-SERVICE
-  - export REGISTRY=$DOCKER_ACCOUNT/mp-uaa-service
+  - export REGISTRY=$DOCKER_ACCOUNT/uaa-service
   - docker build -t $REGISTRY:$TAG ./uaa-service
   - docker push $REGISTRY
