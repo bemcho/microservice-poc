@@ -24,9 +24,7 @@ Check our [wiki](https://github.com/REWE-Digital-Bulgaria/microservice-poc/wiki)
 
 Countless features:
 
-* Monitoring (e.g. ELK stack)
 * Client apps 
 * Price and promotion service
-* CI
-* Dockerizing the application
+* Kafka image for inter-service asynchronous communication
 * etc etc etc
