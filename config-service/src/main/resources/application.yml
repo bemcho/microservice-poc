@@ -12,7 +12,7 @@ spring:
 eureka:
     client:
         serviceUrl:
-            defaultZone: "http://localhost:5051/eureka/"
+            defaultZone: http://registry-service:5051/eureka/
 
 server:
     port: 5070  
