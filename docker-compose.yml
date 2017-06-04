@@ -35,3 +35,42 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  uaa-service:
+    image: luchob/uaa-service
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 5060:5060
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  monitoring-service:
+    image: luchob/monitoring-service
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 5088:5088
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  api-gateway-service:
+    image: luchob/api-gateway-service
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
