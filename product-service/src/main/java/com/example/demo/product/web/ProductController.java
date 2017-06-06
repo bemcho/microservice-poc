@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.demo.product.domain.Product;
 import com.example.demo.product.exceptions.NotFoundException;
 import com.example.demo.product.repository.ProductRepository;
+import com.example.demo.product.service.product.ProductService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import io.swagger.annotations.Api;
@@ -34,6 +35,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private ProductService productService;
 
 	/**
 	 * Get a product by ID.
@@ -65,7 +69,7 @@ public class ProductController {
 	public ResponseEntity<Product> createProduct(
 			@ApiParam(name = "product", value = "The product.", required = true) @RequestBody Product product) {
 
-		Product newProduct = productRepository.save(product);
+		Product newProduct = productService.createProduct(product);
 
 		return ResponseEntity.created(productURI(newProduct.getId())).body(newProduct);
 	}

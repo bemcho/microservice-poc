@@ -31,6 +31,8 @@ dependencies {
 	compile("org.springframework.cloud:spring-cloud-starter-hystrix")
 	compile("org.springframework.security.oauth:spring-security-oauth2")
 	
+	compile("org.springframework.kafka:spring-kafka:1.2.1.RELEASE")
+	
 	compile("io.springfox:springfox-swagger2:2.6.1")
 	compile("com.h2database:h2")
 	
