@@ -1,0 +1,57 @@
+package com.example.demo.product.web;
+
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.example.demo.product.domain.Product;
+import com.example.demo.product.repository.ProductRepository;
+import com.example.demo.product.service.product.ProductService;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(controllers = ProductController.class, secure = false)
+@TestPropertySource(locations = "classpath:application-controller-tests.properties")
+public class ProductControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+	@MockBean
+	private ProductRepository mockProductRepository;
+
+	@MockBean
+	private ProductService mockProductService;
+
+	private Product testProductExisting;
+
+	@Before
+	public void setUp() {
+
+		testProductExisting = new Product();
+
+		testProductExisting.setId(1);
+		testProductExisting.setName("LOREM");
+		testProductExisting.setSku("LRM1");
+	}
+
+	@Test
+	public void testProductFound() throws Exception {
+
+		given(mockProductRepository.findOne(1)).willReturn(testProductExisting);
+
+		mockMvc.
+			perform(get("/api/products/1").accept(MediaType.APPLICATION_JSON)).
+			andExpect(status().isOk());
+	}
+}
