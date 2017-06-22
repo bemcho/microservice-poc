@@ -2,7 +2,8 @@ package com.example.demo.product.web;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class ProductControllerTest extends ControllerTestBase {
 
 		testProductExisting.setId(1);
 		testProductExisting.setName("LOREM");
-		testProductExisting.setSku("LRM1");
+		testProductExisting.setSku("IPSUM");
 	}
 
 	@Test
@@ -44,7 +45,13 @@ public class ProductControllerTest extends ControllerTestBase {
 		given(mockProductRepository.findOne(1)).willReturn(testProductExisting);
 
 		mockMvc.
-			perform(get("/api/products/1").accept(MediaType.APPLICATION_JSON)).
-			andExpect(status().isOk());
-	}
+			perform(get("/api/products/1").
+					accept(MediaType.APPLICATION_JSON)).
+					andExpect(status().isOk()).
+					andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).	
+                    andExpect(jsonPath("$.id", is(1))).
+                    andExpect(jsonPath("$.name", is(testProductExisting.getName()))).
+                    andExpect(jsonPath("$.sku", is(testProductExisting.getSku())));
+        
+	}	
 }
