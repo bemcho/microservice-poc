@@ -5,19 +5,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * An entity representing a product and its related properties.
  */
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
-	private int id;
+	private Integer id;
+	@NotEmpty
 	private String sku;
 	private String name;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -26,7 +32,7 @@ public class Product {
 	 * 
 	 * @param id the if of the product.
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

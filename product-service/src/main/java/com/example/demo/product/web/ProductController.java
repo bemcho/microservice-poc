@@ -3,6 +3,8 @@ package com.example.demo.product.web;
 import java.net.URI;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +69,7 @@ public class ProductController {
 	@ApiOperation("Creates a new product.")
 	@RequestMapping(method = RequestMethod.POST, value = "/api/products", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Product> createProduct(
-			@ApiParam(name = "product", value = "The product.", required = true) @RequestBody Product product) {
+			@ApiParam(name = "product", value = "The product.", required = true) @Valid @RequestBody Product product) {
 
 		Product newProduct = productService.createProduct(product);
 
