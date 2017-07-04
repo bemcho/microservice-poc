@@ -4,3 +4,6 @@
 /**/.settings
 /**/build
 /**/bin
+/.metadata
+/.recommenders
+/Servers
