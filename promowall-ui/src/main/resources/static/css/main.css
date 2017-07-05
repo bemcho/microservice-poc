@@ -1,0 +1,102 @@
+.scanner {
+	opacity: 0; 
+	width: 100%; 
+	height: 100%;
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.product {
+	border: 1px solid #cccccc;
+	border-radius: 2px;
+	padding: 0 50px;
+	height: 300px;
+}
+
+.product > img {
+	width: 130px;
+	height: 130px;
+}
+
+#promotions-container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.prices {
+	padding-bottom: 50px;
+}
+
+.pricebox {
+    bottom: 30px;
+    font-size: 50px;
+    line-height: 1;
+    position: absolute;
+    right: 25px;
+    text-align: center;
+    z-index: 2;
+}
+.pricebox .amount {
+    color: #7a7a7a;
+    font-size: 0.2em;
+    line-height: 1.6em;
+}
+.pricebox .discount {
+    color: #cc071e;
+    display: block;
+    font-size: 0.2em;
+    padding: 5px 0 3px;
+    position: relative;
+}
+.pricebox .discount > strong {
+    display: block;
+    font-size: 1.2em;
+    line-height: 1.1;
+}
+.pricebox .discount::after {
+    background-color: #f7c800;
+    border-radius: 2px;
+    content: "";
+    display: block;
+    height: 6.5em;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+.pricebox .price {
+    background-color: #cc071e;
+    border-radius: 2px;
+    color: white;
+    display: inline-block;
+    font-family: RewePrice,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    height: 1em;
+    letter-spacing: -0.02em;
+    line-height: 0.7em;
+    margin: 0 7px;
+    min-width: 1.4em;
+    position: relative;
+    text-align: center;
+}
+.pricebox .price small {
+    font-size: 0.583333em;
+    letter-spacing: 0;
+    margin: 0 0 0 -0.3em;
+    vertical-align: 0.51em;
+}
+.pricebox .unitPrice {
+    color: #cc071e;
+    display: block;
+    font-size: 0.2em;
+    height: 2em;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    width: 140%;
+}
