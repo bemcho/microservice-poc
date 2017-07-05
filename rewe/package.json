@@ -12,8 +12,9 @@
     "body-parser": "^1.12.4",
     "classnames": "^2.1.2",
     "express": "^4.2.0",
+    "express-http-proxy": "^1.0.4",
     "fluxxor": "^1.5.4",
-    "keymirror": "^0.1.1",
+    "http-proxy": "^1.16.2",
     "node-libs-browser": "^0.5.2",
     "ws": "^0.7.1"
   },
@@ -23,7 +24,8 @@
     "gulp-webpack": "^1.4.0",
     "jsx-loader": "^0.13.2",
     "react-tools": "^0.13.3",
-    "webpack": "^1.9.10"
+    "webpack": "^1.9.10",
+    "express-request-proxy": "2.0.0"
   },
   "license": "MIT"
 }

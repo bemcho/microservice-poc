@@ -70,13 +70,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    MainComponent = __webpack_require__(100),
 	
 	    // Actions
-	    MainActions = __webpack_require__(104),
+	    MainActions = __webpack_require__(105),
 	    actions = {
 	      main: MainActions
 	    },
 	
 	    // Stores
-	    MainStore = __webpack_require__(107),
+	    MainStore = __webpack_require__(108),
 	    stores = {
 	      main: new MainStore()
 	    },
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	React.render(
 	  React.createElement(MainComponent, {flux: flux}),
-	  document.querySelector('main.real-time-react')
+	  document.querySelector('main.rewe-app')
 	);
 
 
@@ -4610,58 +4610,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    React = __webpack_require__(99),
 	    Header = __webpack_require__(101),
 	    Promotions = __webpack_require__(102),
+	    Scanner = __webpack_require__(104),
 	    FluxMixin = Fluxxor.FluxMixin(React),
 	    StoreWatchMixin = Fluxxor.StoreWatchMixin,
 	
 	    Main = React.createClass({displayName: "Main",
 	      mixins: [FluxMixin, StoreWatchMixin("main")],
-	      code: "",
-		  lastTime: 0,
-		  
+	
 	      getStateFromFlux: function() {
 	        var store = this.getFlux().store("main");
 	        return {
-	          total: store.total
+	          promotions: store.promotions
 	        };
 	      },
 	
-	      sendMessage: function() {
-	        this.getFlux().actions.main.sendMessage();
-	      },
-	      
-	      clearCode: function () {
-			this.code = "";
-		  },
-	      
-	      requestPromotions: function (code) {
-	        alert(code);
-	      },
-	      
-	      collectKey: function (event) {
-	      	var time = new Date().getTime();
-	
-			if (time - this.lastTime > 1000) {
-				this.clearCode();
-			}
-	
-			this.lastTime = time;
-	
-			this.code += String.fromCharCode(event.charCode);
-	
-			if (this.code.length >= 13) {
-				this.requestPromotions(this.code); //send request
-				this.clearCode();
-			}
+	      componentDidMount: function() {
+	        this.getFlux().actions.main.loadPromotions();
 	      },
 	     
-	
 	      render: function() {
 	        return React.createElement("content", {className: "principal"}, 
 	        React.createElement(Header, null), 
-	        React.createElement(Promotions, null), 
-	          React.createElement("div", null, 
-	          React.createElement("input", {id: "code", autoFocus: true, onKeyPress: this.collectKey})
-	          )
+	        React.createElement(Promotions, {flux: this.getFlux()}), 
+	        React.createElement(Scanner, null)
 	        );
 	      }
 	    });
@@ -4703,14 +4674,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    Promotions = React.createClass({displayName: "Promotions",
 	    
-	      render: function() {
-	        return React.createElement("div", {className: "promotions-container text-center"}, 
-	          React.createElement("h2", null, "Promotions Container"), 
-	          React.createElement("div", {className: "row"}, 
-	          React.createElement(Product, null), 
-	           React.createElement(Product, null), 
-	            React.createElement(Product, null), 
-	             React.createElement(Product, null)
+	    render: function() {
+	      return React.createElement("div", {className: "promotions-container text-center"}, 
+	               React.createElement("h2", null, "Promotions Container"), 
+	               React.createElement("div", {className: "row"}, 
+	               React.createElement(Product, null), 
+	               React.createElement(Product, null), 
+	               React.createElement(Product, null), 
+	               React.createElement(Product, null)
 	             )
 	          );
 	      }
@@ -4757,25 +4728,78 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/** @jsx React.DOM */var Fluxxor = __webpack_require__(2),
+	    React = __webpack_require__(99),
+	
+	    Scanner = React.createClass({displayName: "Scanner",
+	      code: "",
+		  lastTime: 0,
+		  
+	      clearCode: function () {
+			this.code = "";
+		  },
+	      
+	      requestPromotions: function (code) {
+	        alert(code);
+	      },
+	      
+	      collectKey: function (event) {
+	      	var time = new Date().getTime();
+	
+			if (time - this.lastTime > 1000) {
+				this.clearCode();
+			}
+	
+			this.lastTime = time;
+	
+			this.code += String.fromCharCode(event.charCode);
+	
+			if (this.code.length >= 13) {
+				this.requestPromotions(this.code); //send request
+				this.clearCode();
+			}
+	      },
+	      
+	      render: function() {
+	        return  React.createElement("div", null, 
+	          React.createElement("input", {id: "code", autoFocus: true, onKeyPress: this.collectKey})
+	          );
+	      }
+	    });
+	
+	module.exports = Scanner;
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
-	var Constants = __webpack_require__(105).Main;
+	var Constants = __webpack_require__(106).Main;
+	var DataService = __webpack_require__(107);
 	
 	// All actions to have the simple signature of (type, params) for consistency
 	// with server-side event delegation
 	
 	var MainActions = {
-	  sendMessage: function(params) {
-	    this.dispatch(Constants.SEND, params);
+	  loadPromotions: function(params) {
+	    this.dispatch(Constants.LOAD_PROMOTIONS, params);
+	
+	    DataService.loadPromotions(function(promos) {
+	      this.dispatch(Constants.LOAD_PROMOTIONS_SUCCESS, {promos: promos});
+	    }.bind(this), function(error) {
+	      this.dispatch(Constants.LOAD_PROMOTIONS_FAIL, {error: error});
+	    }.bind(this));
 	  },
-	  sendMessageError: function(data) {
-	    this.despatch(Constants.SEND_ERROR, data);
-	  },
-	  updateMessages: function(params) {
-	    this.dispatch(Constants.UPDATE, params);
-	  },
-	  updateMessagesError: function(data) {
-	    this.dispatch(Constants.UPDATE_ERROR, data);
+	
+	  loadUserPromotions: function(params) {    
+	    this.dispatch(Constants.LOAD_USER_PROMOTIONS, params);
+	
+	    DataService.loadUserPromotions(function(userPromos) {
+	      this.dispatch(Constants.LOAD_USER_PROMOTIONS_SUCCESS, {userPromos: userPromos});
+	    }.bind(this), function(error) {
+	      this.dispatch(Constants.LOAD_USER_PROMOTIONS_FAIL, {error: error});
+	    }.bind(this));
 	  }
 	};
 	
@@ -4783,124 +4807,90 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var keymirror = __webpack_require__(106);
-	
-	module.exports = {
-	  Main: keymirror({
-	    'GET_PROMOTIONS': null,
-	    'GET_USER_PROMOTIONS': null
-	  })
-	};
-
-
-/***/ }),
 /* 106 */
 /***/ (function(module, exports) {
 
-	/**
-	 * Copyright 2013-2014 Facebook, Inc.
-	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 *
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Constructs an enumeration with keys equal to their value.
-	 *
-	 * For example:
-	 *
-	 *   var COLORS = keyMirror({blue: null, red: null});
-	 *   var myColor = COLORS.blue;
-	 *   var isColorValid = !!COLORS[myColor];
-	 *
-	 * The last line could not be performed if the values of the generated enum were
-	 * not equal to their keys.
-	 *
-	 *   Input:  {key1: val1, key2: val2}
-	 *   Output: {key1: key1, key2: key2}
-	 *
-	 * @param {object} obj
-	 * @return {object}
-	 */
-	var keyMirror = function(obj) {
-	  var ret = {};
-	  var key;
-	  if (!(obj instanceof Object && !Array.isArray(obj))) {
-	    throw new Error('keyMirror(...): Argument must be an object.');
+	module.exports = {
+	  Main: {
+		    'LOAD_PROMOTIONS': 'LOAD_PROMOTIONS',
+		    'LOAD_PROMOTIONS_SUCCESS': 'LOAD_PROMOTIONS_SUCCESS',
+		    'LOAD_PROMOTIONS_FAIL': 'LOAD_PROMOTIONS_FAIL',
+		    'LOAD_USER_PROMOTIONS': 'LOAD_USER_PROMOTIONS',
+		    'LOAD_USER_PROMOTIONS_SUCCESS': 'LOAD_USER_PROMOTIONS_SUCCESS',
+		    'LOAD_USER_PROMOTIONS_FAIL': 'LOAD_USER_PROMOTIONS_FAIL'
 	  }
-	  for (key in obj) {
-	    if (!obj.hasOwnProperty(key)) {
-	      continue;
-	    }
-	    ret[key] = key;
-	  }
-	  return ret;
 	};
-	
-	module.exports = keyMirror;
-
 
 /***/ }),
 /* 107 */
+/***/ (function(module, exports) {
+
+	function DataService() {
+		var restUrl = "//localhost:8080/api/";
+		
+		this.loadPromotions = loadPromotions;
+		this.loadUserPromotions = loadUserPromotions;
+		
+		function loadPromotions (success, failure) {
+		  $.get(restUrl + "promotions").done(function( data ) {
+			  alert( "Data Loaded: " + data );
+			  success(data);
+		  }).fail(function (error) {
+			  failure(error);
+		  });
+		}
+		
+		function loadUserPromotions(userId, success, failure) {
+		  $.get(restUrl + "promotions/" + userId).done(function( data ) {
+		    alert( "Data Loaded: " + data );
+		      success(data);
+			}).fail(function (error) {
+			  failure(error);
+		  });
+		}
+	}
+	
+	module.exports = new DataService();
+
+/***/ }),
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Fluxxor = __webpack_require__(2),
-	    Constants = __webpack_require__(105).Main;
+	    Constants = __webpack_require__(106).Main;
 	
 	var MainStore = Fluxxor.createStore({
 	  initialize: function() {
-	    this.total = 0;
+	    this.loading = false;
+	    this.error = null;
+	    this.promotions = {};
 	
 	    this.bindActions(
-	      Constants.SEND, this.sendMessage,
-	      Constants.SEND_ERROR, this.sendMessageError,
-	      Constants.UPDATE, this.updateMessages,
-	      Constants.UPDATE_ERROR, this.updateMessagesError
+	      Constants.LOAD_PROMOTIONS, this.onLoadPromotions,
+	      Constants.LOAD_PROMOTIONS_SUCCESS, this.onLoadPromotionsSuccess,
+	      Constants.LOAD_PROMOTIONS_FAIL, this.onLoadPromotionsFail
 	    );
 	  },
-	
-	  sendMessage: function(params) {
-	
-	  },
-	
-	  sendMessageError: function(data) {
-	    // console.log(data);
-	  },
-	
-	  updateMessages: function(params) {
-	    // In this very simple example, this is called in order to instantiate
-	    // the internal React update
-	
-	    this.total++;
-	    this.emit('change');
-	  },
-	
-	  updateMessagesError: function(data) {
-	    // console.log(data);
-	  },
 	  
-	  getPromotions: function () {
-		  $.get( "promotions")
-		  .done(function( data ) {
-		    alert( "Data Loaded: " + data );
-		  });
+	  onLoadPromotions: function() {
+	    this.loading = true;
+	    this.emit("change");
+	  },
+	
+	  onLoadPromotionsSuccess: function(payload) {
+	    this.loading = false;
+	    this.error = null;
+	
+	    this.promotions = payload;
+	    this.emit("change");
+	  },
+	
+	  onLoadPromotionsFail: function(payload) {
+	    this.loading = false;
+	    this.error = payload.error;
+	    this.emit("change");
 	  }
 	});
 	

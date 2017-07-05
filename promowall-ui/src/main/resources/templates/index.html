@@ -2,26 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
-<title>Hello, World!</title>
-
+<title>REWE Digital Personal Promotions</title>
+<link  rel="stylesheet" href="css/main.css"></link>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
 </head>
 
-<body>
-	Hello, I'm a thymeleaf template.
-	<table class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<td>ID</td>
-		
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="promo : ${commonPromotions}">
-				<td th:text="${promo.id}">1</td>
-				
-			</tr>
-		</tbody>
-	</table>
+<body>	
+	<header>
+  	<a href="http://rewe.de">
+  		<img class="logo" src="img/logo.png" />
+  	</a>
+  </header>
+  <div id="promotions-container" class="text-center">
+  <h2>Promotions</h2>
+  	<div class="row">
+			<div th:each="promo : ${commonPromotions}" class="col-md-3 col-xs-12 text-center">
+				<div class="thumbnail product">
+					<h4 th:text="${promo.product.name}"></h4>
+					<img th:src="@{img/{imageName}(imageName=${promo.product.url})}" th:alt="${promo.product.name}"/>
+					<div th:text="${promo.description}" class="description"></div>
+					<div class="prices">
+						<div class="pricebox">
+							<div class="discount">
+								<strong th:text="${promo.discount}"></strong>
+							</div>
+							<div th:text="${promo.discount}" class="price">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+  	</div>
+  	<div id="personal-promotions" class="row">
+  	</div>
+  </div>
+  <div tabindex="1" id="code" class="scanner" onkeypress="collectKey(event);"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+		document.getElementById('code').focus();
+	</script>
 </body>
 </html>
