@@ -11,6 +11,11 @@ zuul:
      serviceId: PRODUCT-SERVICE
      sensitiveHeaders: Cookie,Set-Cookie
      stripPrefix: false
+   promotion:
+     path: /api/promotions/**
+     serviceId: PROMOTION-SERVICE
+     sensitiveHeaders: Cookie,Set-Cookie
+     stripPrefix: false
    oauth:
      path: /oauth/**
      serviceId: UAA-SERVICE
