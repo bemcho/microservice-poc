@@ -33,5 +33,5 @@ flux.on("dispatch", function(type, payload) {
 
 React.render(
   <MainComponent flux={flux} />,
-  document.querySelector('main.real-time-react')
+  document.querySelector('main.rewe-app')
 );

@@ -5,41 +5,34 @@ var Fluxxor = require('fluxxor'),
 
 var MainStore = Fluxxor.createStore({
   initialize: function() {
-    this.total = 0;
+    this.loading = false;
+    this.error = null;
+    this.promotions = {};
 
     this.bindActions(
-      Constants.SEND, this.sendMessage,
-      Constants.SEND_ERROR, this.sendMessageError,
-      Constants.UPDATE, this.updateMessages,
-      Constants.UPDATE_ERROR, this.updateMessagesError
+      Constants.LOAD_PROMOTIONS, this.onLoadPromotions,
+      Constants.LOAD_PROMOTIONS_SUCCESS, this.onLoadPromotionsSuccess,
+      Constants.LOAD_PROMOTIONS_FAIL, this.onLoadPromotionsFail
     );
   },
-
-  sendMessage: function(params) {
-
-  },
-
-  sendMessageError: function(data) {
-    // console.log(data);
-  },
-
-  updateMessages: function(params) {
-    // In this very simple example, this is called in order to instantiate
-    // the internal React update
-
-    this.total++;
-    this.emit('change');
-  },
-
-  updateMessagesError: function(data) {
-    // console.log(data);
-  },
   
-  getPromotions: function () {
-	  $.get( "promotions")
-	  .done(function( data ) {
-	    alert( "Data Loaded: " + data );
-	  });
+  onLoadPromotions: function() {
+    this.loading = true;
+    this.emit("change");
+  },
+
+  onLoadPromotionsSuccess: function(payload) {
+    this.loading = false;
+    this.error = null;
+
+    this.promotions = payload;
+    this.emit("change");
+  },
+
+  onLoadPromotionsFail: function(payload) {
+    this.loading = false;
+    this.error = payload.error;
+    this.emit("change");
   }
 });
 

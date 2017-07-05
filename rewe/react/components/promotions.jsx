@@ -6,14 +6,14 @@ var Fluxxor = require('fluxxor'),
 
     Promotions = React.createClass({
     
-      render: function() {
-        return <div className="promotions-container text-center">
-          <h2>Promotions Container</h2>
-          <div className="row">
-          <Product/>
-           <Product/>
-            <Product/>
-             <Product/>
+    render: function() {
+      return <div className="promotions-container text-center">
+               <h2>Promotions Container</h2>
+               <div className="row">
+               <Product/>
+               <Product/>
+               <Product/>
+               <Product/>
              </div>
           </div>;
       }

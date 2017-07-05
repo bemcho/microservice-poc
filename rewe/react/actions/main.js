@@ -1,22 +1,30 @@
 'use strict';
 
 var Constants = require('../constants').Main;
+var DataService = require('../services/dataService');
 
 // All actions to have the simple signature of (type, params) for consistency
 // with server-side event delegation
 
 var MainActions = {
-  sendMessage: function(params) {
-    this.dispatch(Constants.SEND, params);
+  loadPromotions: function(params) {
+    this.dispatch(Constants.LOAD_PROMOTIONS, params);
+
+    DataService.loadPromotions(function(promos) {
+      this.dispatch(Constants.LOAD_PROMOTIONS_SUCCESS, {promos: promos});
+    }.bind(this), function(error) {
+      this.dispatch(Constants.LOAD_PROMOTIONS_FAIL, {error: error});
+    }.bind(this));
   },
-  sendMessageError: function(data) {
-    this.despatch(Constants.SEND_ERROR, data);
-  },
-  updateMessages: function(params) {
-    this.dispatch(Constants.UPDATE, params);
-  },
-  updateMessagesError: function(data) {
-    this.dispatch(Constants.UPDATE_ERROR, data);
+
+  loadUserPromotions: function(params) {    
+    this.dispatch(Constants.LOAD_USER_PROMOTIONS, params);
+
+    DataService.loadUserPromotions(function(userPromos) {
+      this.dispatch(Constants.LOAD_USER_PROMOTIONS_SUCCESS, {userPromos: userPromos});
+    }.bind(this), function(error) {
+      this.dispatch(Constants.LOAD_USER_PROMOTIONS_FAIL, {error: error});
+    }.bind(this));
   }
 };
 
