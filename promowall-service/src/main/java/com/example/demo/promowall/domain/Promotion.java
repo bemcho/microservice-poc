@@ -2,6 +2,8 @@ package com.example.demo.promowall.domain;
 
 import static javax.persistence.GenerationType.AUTO;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -60,6 +62,18 @@ public class Promotion {
 
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+	
+	public BigDecimal getDiscountedPrice() {
+		if(product == null){
+			return null;
+		}
+		
+		BigDecimal price = product.getPrice();
+		
+		BigDecimal multiplicand = BigDecimal.valueOf(100 - getDiscount()).divide(BigDecimal.valueOf(100));
+		
+		return price.multiply(multiplicand).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public String getDescription() {
