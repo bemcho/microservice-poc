@@ -1,0 +1,44 @@
+<html>
+<head>
+<title></title>
+<script>
+	var code = "";
+	var lastTime = 0;
+
+	function clearCode() {
+		code = "";
+	}
+
+	function requestPromotions(code) {
+		alert(code);
+	}
+
+	function collectKey(event) {
+		var time = new Date().getTime();
+
+		if (time - lastTime > 1000) {
+			clearCode();
+		}
+
+		lastTime = time;
+
+		code += String.fromCharCode(event.charCode);
+
+		if (code.length >= 13) {
+			requestPromotions(code); //send request
+			clearCode();
+		}
+	}
+</script>
+</head>
+<body>
+	<div tabindex="1" id="code"
+		style="opacity: 0; background: red; width: 100%; height: 100%;"
+		onkeypress="collectKey(event);"></div>
+
+	<script>
+		document.getElementById('code').focus();
+	</script>
+</body>
+</html>
+
