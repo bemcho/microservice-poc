@@ -3,4 +3,4 @@ server:
     
 turbine:
     clusterNameExpression: new String('default')
-    appConfig: product-service
+    appConfig: promowall-service,product-service

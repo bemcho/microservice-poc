@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Hello, World!</title>
+
+</head>
+
+<body>
+	Hello, I'm a thymeleaf template.
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<td>ID</td>
+		
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="promo : ${commonPromotions}">
+				<td th:text="${promo.id}">1</td>
+				
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

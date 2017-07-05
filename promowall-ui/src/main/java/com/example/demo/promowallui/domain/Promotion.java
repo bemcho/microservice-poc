@@ -1,13 +1,6 @@
-package com.example.demo.promowall.domain;
-
-import static javax.persistence.GenerationType.AUTO;
+package com.example.demo.promowallui.domain;
 
 import java.math.BigDecimal;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
