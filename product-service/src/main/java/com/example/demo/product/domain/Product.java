@@ -1,9 +1,12 @@
 package com.example.demo.product.domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,8 +21,27 @@ public class Product {
 
 	private Integer id;
 	@NotEmpty
-	private String sku;
 	private String name;
+	@NotNull
+	private BigDecimal price;
+	@NotEmpty
+	private String url;
+	
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,24 +56,6 @@ public class Product {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	/**
-	 * Returns the unique stock-keeping unit of the product.
-	 * 
-	 * @return the unique stock-keeping unit of the product.
-	 */
-	public String getSku() {
-		return sku;
-	}
-
-	/**
-	 * Sets the unique stock keeping unit of this product.
-	 * 
-	 * @param sku the stock keeping unit of this product.
-	 */
-	public void setSku(String sku) {
-		this.sku = sku;
 	}
 
 	/**
