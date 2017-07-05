@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.promowall.domain.Product;
 import com.example.demo.promowall.domain.Promotion;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("/api/promowall")
@@ -25,6 +26,7 @@ public class PromowallController {
 	private RestTemplate restTemplate;
 	
 	@GetMapping("")
+	@HystrixCommand
 	public Collection<Promotion> getCommonPromotions(){
 		ResponseEntity<Collection<Promotion>> promotionEntities = restTemplate.exchange(PROMOTIONS_ENDPOINT,
 				HttpMethod.GET,
@@ -37,6 +39,7 @@ public class PromowallController {
 	}
 	
 	@GetMapping("/{cardNumber}")
+	@HystrixCommand
 	public Collection<Promotion> getPersonalPromotions(@PathVariable String cardNumber){
 		ResponseEntity<Collection<Promotion>> promotionEntities = restTemplate.exchange(PROMOTIONS_ENDPOINT + "/" + cardNumber,
 				HttpMethod.GET,
