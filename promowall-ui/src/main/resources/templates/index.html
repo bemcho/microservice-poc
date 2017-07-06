@@ -15,18 +15,23 @@
   </header>
   <div id="promotions-container" class="text-center">
   <h2>Promotions</h2>
+  <hr/>
+  <div class="row">
+    <button id="clear" type="button" class="btn btn-warning pull-right" onclick="clearPersonalPromotions()">Clear</button>
+  </div>
   	<div class="row">
 			<div th:each="promo : ${commonPromotions}" class="col-md-3 col-xs-12 text-center">
 				<div class="thumbnail product">
-					<h4 th:text="${promo.product.name}"></h4>
+					<h4 class="product-title" th:text="${promo.product.name}"></h4>
 					<img th:src="@{img/{imageName}(imageName=${promo.product.url})}" th:alt="${promo.product.name}"/>
 					<div th:text="${promo.description}" class="description"></div>
 					<div class="prices">
 						<div class="pricebox">
 							<div class="discount">
-								<strong th:text="${promo.discount}"></strong>
+								<strong th:text="${promo.discount} + '&#37; gespart'"></strong>
 							</div>
-							<div th:text="${promo.discount}" class="price">
+							<div class="price">
+							<small th:text="@{&euro; {price}(price=${promo.discountedPrice})}"></small>
 							</div>
 						</div>
 					</div>
@@ -39,8 +44,5 @@
   <div tabindex="1" id="code" class="scanner" onkeypress="collectKey(event);"></div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/main.js"></script>
-  <script>
-		document.getElementById('code').focus();
-	</script>
 </body>
 </html>

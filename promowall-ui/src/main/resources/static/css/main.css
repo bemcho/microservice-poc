@@ -8,13 +8,19 @@
 	width: 100px;
 	height: 100px;
 	float: left;
+	margin-left: 20px;
 }
 
 .product {
 	border: 1px solid #cccccc;
 	border-radius: 2px;
 	padding: 0 50px;
-	height: 300px;
+	height: 400px;
+}
+
+.product-title {
+	min-height: 75px;
+	overflow-wrap: break-word;
 }
 
 .product > img {
@@ -22,9 +28,41 @@
 	height: 130px;
 }
 
+.description  {
+  margin: 10px;
+  overflow: hidden;
+  position: relative; 
+  line-height: 1.2em;
+  max-height: 3.6em; 
+  text-align: justify;  
+}
+
+.description:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.description:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
 #promotions-container {
 	width: 1000px;
 	margin: 0 auto;
+}
+
+#clear {
+	margin-bottom: 20px;
+    margin-right: 15px;
+    width: 100px;
 }
 
 .prices {
@@ -77,11 +115,12 @@
     font-size: 1em;
     height: 1em;
     letter-spacing: -0.02em;
-    line-height: 0.7em;
+    line-height: 0.9em;
     margin: 0 7px;
     min-width: 1.4em;
     position: relative;
     text-align: center;
+    width: 100px;
 }
 .pricebox .price small {
     font-size: 0.583333em;
