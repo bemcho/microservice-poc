@@ -1,21 +1,12 @@
 var code = "";
 var lastTime = 0;
 
-function focusCode() {
-	$('#code').focus();
-}
-
-$(document).ready(function () {
-	focusCode();
-});
-
 function clearCode() {
 	code = "";
 }
 
 function clearPersonalPromotions() {
 	$('#personal-promotions').html('');
-	focusCode();
 }
 
 function buildPromotions(promos) {
@@ -58,7 +49,7 @@ function requestPromotions(code) {
 	$.get(url).done(function(data) {
 		buildPromotions(data);
 	}).fail(function(error) {
-		alert(JSON.stringify(error));
+		alert('This is not valid card');
 	});
 }
 
@@ -74,7 +65,7 @@ function collectKey(event) {
 	code += String.fromCharCode(event.charCode);
 
 	if (code.length >= 13) {
-		requestPromotions(code); //send request
+		requestPromotions(code);
 		clearCode();
 	}
 }

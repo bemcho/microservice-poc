@@ -9,7 +9,7 @@
 	crossorigin="anonymous"></link>
 </head>
 
-<body>
+<body onkeypress="collectKey(event);">
 	<header>
 		<img class="logo" src="img/logo.png" />
 		<button id="clear" type="button" class="btn btn-warning pull-right"
@@ -40,8 +40,6 @@
 		</div>
 		<div id="personal-promotions" class="row"></div>
 	</div>
-	<div tabindex="1" id="code" class="scanner"
-		onkeypress="collectKey(event);"></div>
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
