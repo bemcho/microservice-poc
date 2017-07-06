@@ -3,27 +3,26 @@
 
 <head>
 <title>REWE Digital Personal Promotions</title>
-<link  rel="stylesheet" href="css/main.css"></link>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="css/main.css"></link>
+<link rel="stylesheet" href="css/vendor/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
 </head>
 
-<body>	
+<body>
 	<header>
-  	<a href="http://rewe.de">
-  		<img class="logo" src="img/logo.png" />
-  	</a>
-  </header>
-  <div id="promotions-container" class="text-center">
-  <h2>Promotions</h2>
-  <hr/>
-  <div class="row">
-    <button id="clear" type="button" class="btn btn-warning pull-right" onclick="clearPersonalPromotions()">Clear</button>
-  </div>
-  	<div class="row">
-			<div th:each="promo : ${commonPromotions}" class="col-md-3 col-xs-12 text-center">
+		<img class="logo" src="img/logo.png" />
+		<button id="clear" type="button" class="btn btn-warning pull-right"
+			onclick="clearPersonalPromotions()">Clear</button>
+	</header>
+	<div id="promotions-container" class="text-center">
+		<div class="row">
+			<div th:each="promo : ${commonPromotions}"
+				class="col-md-3 col-xs-12 text-center">
 				<div class="thumbnail product">
-					<h4 class="product-title" th:text="${promo.product.name}"></h4>
-					<img th:src="@{img/{imageName}(imageName=${promo.product.url})}" th:alt="${promo.product.name}"/>
+					<h5 class="product-title" th:text="${promo.product.name}"></h5>
+					<img th:src="@{img/{imageName}(imageName=${promo.product.url})}"
+						th:alt="${promo.product.name}" />
 					<div th:text="${promo.description}" class="description"></div>
 					<div class="prices">
 						<div class="pricebox">
@@ -31,18 +30,19 @@
 								<strong th:text="${promo.discount} + '&#37; gespart'"></strong>
 							</div>
 							<div class="price">
-							<small th:text="@{&euro; {price}(price=${promo.discountedPrice})}"></small>
+								<small
+									th:text="@{&euro; {price}(price=${promo.discountedPrice})}"></small>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-  	</div>
-  	<div id="personal-promotions" class="row">
-  	</div>
-  </div>
-  <div tabindex="1" id="code" class="scanner" onkeypress="collectKey(event);"></div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="js/main.js"></script>
+		</div>
+		<div id="personal-promotions" class="row"></div>
+	</div>
+	<div tabindex="1" id="code" class="scanner"
+		onkeypress="collectKey(event);"></div>
+	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

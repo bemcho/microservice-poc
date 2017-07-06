@@ -15,17 +15,17 @@
 	border: 1px solid #cccccc;
 	border-radius: 2px;
 	padding: 0 50px;
-	height: 400px;
+	height: 350px;
 }
 
 .product-title {
-	min-height: 75px;
+	min-height: 70px;
 	overflow-wrap: break-word;
 }
 
 .product > img {
-	width: 130px;
-	height: 130px;
+	width: 100px;
+	height: 100px;
 }
 
 .description  {
@@ -59,9 +59,12 @@
 	margin: 0 auto;
 }
 
+.row:first-child {
+	margin-top: 20px;
+}
+
 #clear {
-	margin-bottom: 20px;
-    margin-right: 15px;
+	margin-right: 50px;
     width: 100px;
 }
 

@@ -24,9 +24,9 @@ function buildPromotions(promos) {
 	for (var i = 0; i < promos.length; i++) {
 		personalPromotions.push($('<div></div>').html(
 				'<div class="col-md-3 col-xs-12 text-center">'
-						+ '<div class="thumbnail product">' + '<h4>'
+						+ '<div class="thumbnail product">' + '<h5 class="product-title">'
 						+ promos[i].product.name
-						+ '</h4>'
+						+ '</h5>'
 						+ '<img src="img/'
 						+ promos[i].product.url
 						+ '" alt="'
